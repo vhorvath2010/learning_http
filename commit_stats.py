@@ -2,9 +2,12 @@
 import requests
 import json
 
+# Get repo
+repo = input("Enter the repo in the format %user%/%repo%: ")
+
 # Get JSON data for all commits
 api = "https://api.github.com"
-res = requests.get(api + "/repos/vhorvath2010/learning_http/commits")
+res = requests.get(api + "/repos/" + repo + "/commits")
 json_data = res.json()
 
 # Create map of commit authors to # of commits
@@ -16,5 +19,6 @@ for commit in json_data:
 # Serialize to JSON response
 json_response = json.dumps(num_commits, indent=2)
 # Pseudo post content to API
-# post_res = requests.post(api + "/repos/vhorvath2010/learning_http/commits", json=json_response)
+# post_res = requests.post("post-url", json=json_response)
+print("Here are the commits per user of", repo)
 print(json_response)
