@@ -22,3 +22,11 @@ json_response = json.dumps(num_commits, indent=2)
 # post_res = requests.post("post-url", json=json_response)
 print("Here are the commits per user of", repo)
 print(json_response)
+
+# Find info about all commits (practice with headers/params)
+print("Finding all of my commits this month")
+commit_data_res = requests.get(api + "/search/commits",
+                               headers={'accept': 'application/vnd.github+json'},
+                               params={'q': 'author:vhorvath2010 committer-date:>=2022-07-29'})
+commit_data_json = commit_data_res.json()
+print(commit_data_json)
